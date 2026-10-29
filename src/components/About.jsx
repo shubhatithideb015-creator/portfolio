@@ -3,25 +3,50 @@ import { profileData } from '../data/profile';
 export default function About() {
   const { education, currentFocus } = profileData;
 
+  const corePillars = [
+    {
+      icon: "💻",
+      title: "Full-Stack Systems",
+      desc: "Responsive React frontends, lightweight Python Flask services, and persistent SQLite relational data layers."
+    },
+    {
+      icon: "📊",
+      title: "Data Science & Analysis",
+      desc: "Exploratory data analysis, feature preparation, SQL schemas, and visual insight extraction."
+    },
+    {
+      icon: "🧠",
+      title: "AI & Machine Learning",
+      desc: "Foundational ML models, evaluation metrics, supervised learning, and AI application pipeline design."
+    },
+    {
+      icon: "⚖️",
+      title: "Responsible AI & Ethics",
+      desc: "Bias mitigation, transparency, data privacy, and ethical development frameworks in intelligent software."
+    }
+  ];
+
   return (
     <section className="section-wrapper" id="about" aria-labelledby="about-heading">
       <div className="container">
         {/* Section Header */}
         <div className="section-header">
-          <span className="section-eyebrow">Background & Direction</span>
+          <span className="section-eyebrow">Waypoint • About Me</span>
           <h2 id="about-heading" className="section-title">
             About & Academic Foundation
           </h2>
           <p className="section-subtitle">
-            An engineering journey combining rigorous computer science fundamentals, data-driven
-            modeling, and practical application building.
+            Bridging machine learning fundamentals with dependable, intuitive software systems.
           </p>
         </div>
 
-        <div className="about-layout">
-          {/* Main Biography Column */}
-          <div className="about-bio-column">
-            <h3 className="about-column-heading">Engineering Narrative</h3>
+        <div className="about-grid">
+          {/* Left Column: Narrative Lead & 4 Core Pillars */}
+          <div className="about-narrative-column">
+            <div className="about-narrative-lead">
+              A computer science student combining <span className="text-highlight">machine learning fundamentals</span>, analytical data processing, and <span className="text-highlight">practical web engineering</span>.
+            </div>
+
             <div className="about-text-content">
               <p>
                 I am a third-year Computer Science student specializing in Data Science based in Kolkata,
@@ -39,67 +64,71 @@ export default function About() {
               </p>
             </div>
 
-            {/* Current Active Exploration */}
-            <div className="about-learning-card">
-              <div className="learning-card-header">
-                <span className="learning-pulse-dot" />
-                <h4 className="learning-card-title">Current Technical Focus</h4>
-              </div>
-              <ul className="learning-items-list">
-                {currentFocus.map((item, idx) => (
-                  <li key={idx} className="learning-item">
-                    <span className="learning-item-bullet">—</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
+            {/* 4 Core Pillars Bento Grid */}
+            <div className="about-pillars-grid">
+              {corePillars.map((pillar, idx) => (
+                <div key={idx} className="pillar-card">
+                  <div className="pillar-icon-orbit" aria-hidden="true">{pillar.icon}</div>
+                  <h4 className="pillar-title">{pillar.title}</h4>
+                  <p className="pillar-desc">{pillar.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Education & Academic Column */}
-          <div className="about-education-column">
-            <h3 className="about-column-heading">Academic Record</h3>
-
-            <div className="education-card">
-              <div className="education-header">
-                <div className="education-badge">B.Tech</div>
+          {/* Right Column: Mission Dossier Card & Active Focus */}
+          <div className="about-sidebar-column">
+            {/* Dossier Card */}
+            <div className="mission-dossier-card">
+              <div className="dossier-header">
                 <div>
-                  <h4 className="education-degree">{education.degree}</h4>
-                  <span className="education-spec">{education.specialization}</span>
+                  <h3 className="dossier-heading">Profile Overview</h3>
+                  <span className="dossier-subheading">Academic Information</span>
                 </div>
+                <span className="dossier-status-stamp">OPEN TO WORK</span>
               </div>
 
-              <div className="education-details">
-                <div className="edu-detail-row">
-                  <span className="edu-label">Institution:</span>
-                  <span className="edu-value edu-placeholder">{education.institution}</span>
-                </div>
-                <div className="edu-detail-row">
-                  <span className="edu-label">Academic Status:</span>
-                  <span className="edu-value">{education.year}</span>
-                </div>
-                <div className="edu-detail-row">
-                  <span className="edu-label">Location:</span>
-                  <span className="edu-value">{education.location}</span>
-                </div>
-              </div>
+              <ul className="dossier-list">
+                <li className="dossier-item">
+                  <span className="dossier-label">Student Name</span>
+                  <span className="dossier-val">{profileData.name}</span>
+                </li>
+                <li className="dossier-item">
+                  <span className="dossier-label">Degree Mission</span>
+                  <span className="dossier-val">{education.degree}</span>
+                </li>
+                <li className="dossier-item">
+                  <span className="dossier-label">Specialization</span>
+                  <span className="dossier-val accent-mint">{education.specialization}</span>
+                </li>
+                <li className="dossier-item">
+                  <span className="dossier-label">Cumulative Score</span>
+                  <span className="dossier-val accent-gold">{education.gpa || "8.54 / 10"} CGPA</span>
+                </li>
+                <li className="dossier-item">
+                  <span className="dossier-label">Academic Status</span>
+                  <span className="dossier-val">{education.year}</span>
+                </li>
+                <li className="dossier-item">
+                  <span className="dossier-label">Base Location</span>
+                  <span className="dossier-val">{education.location}</span>
+                </li>
+              </ul>
+            </div>
 
-              {/* Coursework Focus Areas */}
-              <div className="education-coursework">
-                <span className="coursework-label">Core Coursework & Foundations:</span>
-                <div className="coursework-tags">
-                  {education.focusAreas.map((area) => (
-                    <span key={area} className="tech-tag">
-                      {area}
-                    </span>
+            {/* Active Learning Focus Card */}
+            <div className="curiosity-quote-card">
+              <div className="curiosity-icon">🪐</div>
+              <div>
+                <h4 className="curiosity-title">Current Technical Focus</h4>
+                <ul className="curiosity-items-list">
+                  {currentFocus.map((item, idx) => (
+                    <li key={idx} className="curiosity-item">
+                      <span className="curiosity-bullet">✦</span>
+                      <span>{item}</span>
+                    </li>
                   ))}
-                </div>
-              </div>
-
-              <div className="education-note">
-                <span className="edu-hint">
-                  College details and graduation date can be customized in <code className="inline-code">src/data/profile.js</code>.
-                </span>
+                </ul>
               </div>
             </div>
           </div>

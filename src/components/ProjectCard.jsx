@@ -1,7 +1,7 @@
 export default function ProjectCard({ project, isFeatured = false }) {
   const isCompleted = project.status === 'Completed';
 
-  // Render an editorial SVG visual placeholder when no screenshot image is provided
+  // Render an editorial architecture simulation stage when no screenshot image is provided
   const renderVisual = () => {
     if (project.screenshot) {
       return (
@@ -16,84 +16,107 @@ export default function ProjectCard({ project, isFeatured = false }) {
       );
     }
 
-    // CineMatch custom editorial blueprint
+    // CineMatch custom architecture simulation stage
     if (project.id === 'cinematch') {
       return (
         <div className="project-abstract-media project-cinematch-visual" aria-hidden="true">
-          <div className="abstract-card-ui">
-            <div className="abstract-ui-bar">
-              <span className="abstract-circle-dot red" />
-              <span className="abstract-circle-dot yellow" />
-              <span className="abstract-circle-dot green" />
-              <span className="abstract-ui-title">api.omdb.org / watchlist.db</span>
+          <div className="simulation-box">
+            <div className="simulation-header">
+              <div className="simulation-title">
+                <span>⚡ CineMatch Architecture</span>
+              </div>
+              <span className="simulation-badge">Active DB Pipeline</span>
             </div>
-            <div className="abstract-ui-body">
-              <div className="abstract-film-strip">
-                <div className="abstract-poster">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <rect width="18" height="18" x="3" y="3" rx="2" />
-                    <path d="m9 8 6 4-6 4Z" />
-                  </svg>
-                </div>
-                <div className="abstract-meta-lines">
-                  <div className="abstract-line short" />
-                  <div className="abstract-line medium" />
-                  <div className="abstract-badge-row">
-                    <span className="abstract-mini-tag">React</span>
-                    <span className="abstract-mini-tag">Flask</span>
-                    <span className="abstract-mini-tag">SQLite</span>
-                  </div>
+
+            <div className="pipeline-flow">
+              <div className="flow-step">
+                <div className="flow-icon">🎬</div>
+                <div className="flow-meta">
+                  <div className="flow-name">1. OMDb API Title Search</div>
+                  <div className="flow-detail">Real-time media search & metadata ingestion</div>
                 </div>
               </div>
-              <div className="abstract-watchlist-rows">
-                <div className="abstract-row checked">
-                  <span className="abstract-check">✓</span>
-                  <span className="abstract-row-text">Search titles & metadata</span>
-                </div>
-                <div className="abstract-row checked">
-                  <span className="abstract-check">✓</span>
-                  <span className="abstract-row-text">SQLite persistence</span>
-                </div>
-                <div className="abstract-row checked">
-                  <span className="abstract-check">✓</span>
-                  <span className="abstract-row-text">Custom watch status</span>
+
+              <div className="flow-step">
+                <div className="flow-icon">⚛️</div>
+                <div className="flow-meta">
+                  <div className="flow-name">2. React Client Watchlist</div>
+                  <div className="flow-detail">Status tagging (to-watch, watched) & UI state</div>
                 </div>
               </div>
+
+              <div className="flow-step">
+                <div className="flow-icon">🌶️</div>
+                <div className="flow-meta">
+                  <div className="flow-name">3. Flask REST Microservice</div>
+                  <div className="flow-detail">Endpoint routing & payload serialization</div>
+                </div>
+              </div>
+
+              <div className="flow-step">
+                <div className="flow-icon">🗄️</div>
+                <div className="flow-meta">
+                  <div className="flow-name">4. SQLite Relational Storage</div>
+                  <div className="flow-detail">Persistent local database record synchronization</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="simulation-footer-note">
+              ✦ End-to-end client-server architecture with persistent state
             </div>
           </div>
         </div>
       );
     }
 
-    // In-Progress AI Project blueprint
+    // In-Progress AI Project ML workflow pipeline stage
     return (
       <div className="project-abstract-media project-ai-visual" aria-hidden="true">
-        <div className="abstract-card-ui">
-          <div className="abstract-ui-bar">
-            <span className="abstract-circle-dot violet" />
-            <span className="abstract-ui-title">pipeline: data_prep &rarr; model &rarr; eval</span>
+        <div className="simulation-box">
+          <div className="simulation-header">
+            <div className="simulation-title">
+              <span>🧠 AI Engineering Pipeline</span>
+            </div>
+            <span className="simulation-badge active">Under Exploration</span>
           </div>
-          <div className="abstract-pipeline-body">
-            <div className="pipeline-nodes">
-              <div className="pipeline-node">
-                <span className="pipeline-node-icon">&bull;</span>
-                <span className="pipeline-node-label">Dataset</span>
-              </div>
-              <span className="pipeline-arrow">&rarr;</span>
-              <div className="pipeline-node active">
-                <span className="pipeline-node-icon">&bull;</span>
-                <span className="pipeline-node-label">Model Training</span>
-              </div>
-              <span className="pipeline-arrow">&rarr;</span>
-              <div className="pipeline-node">
-                <span className="pipeline-node-icon">&bull;</span>
-                <span className="pipeline-node-label">Evaluation</span>
+
+          <div className="pipeline-flow">
+            <div className="flow-step">
+              <div className="flow-icon">📑</div>
+              <div className="flow-meta">
+                <div className="flow-name">1. Problem Formulation & Data</div>
+                <div className="flow-detail">Dataset curation & pipeline requirements definition</div>
               </div>
             </div>
-            <div className="pipeline-status-banner">
-              <span className="pipeline-pulse-dot" />
-              <span>Active Architecture & Dataset Exploration</span>
+
+            <div className="flow-step">
+              <div className="flow-icon">⚙️</div>
+              <div className="flow-meta">
+                <div className="flow-name">2. Feature Pipeline & Prep</div>
+                <div className="flow-detail">Cleaning, extraction, and validation algorithms</div>
+              </div>
             </div>
+
+            <div className="flow-step">
+              <div className="flow-icon">🔬</div>
+              <div className="flow-meta">
+                <div className="flow-name">3. Model Experimentation</div>
+                <div className="flow-detail">Architecture exploration & evaluation benchmarking</div>
+              </div>
+            </div>
+
+            <div className="flow-step">
+              <div className="flow-icon">🔌</div>
+              <div className="flow-meta">
+                <div className="flow-name">4. Software Client Integration</div>
+                <div className="flow-detail">REST API exposure for seamless client consumption</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="simulation-footer-note">
+            ✦ Model benchmarking & evaluation pipelines in active development
           </div>
         </div>
       </div>
@@ -106,40 +129,26 @@ export default function ProjectCard({ project, isFeatured = false }) {
         !isCompleted ? 'project-card-in-progress' : ''
       }`}
     >
-      {/* Top Media / Abstract UI */}
-      {renderVisual()}
-
-      {/* Card Content */}
+      {/* Left: Card Content */}
       <div className="project-content">
         <div className="project-header">
-          <div className="project-header-main">
-            <span className="project-category">{project.category}</span>
-            <h3 className="project-title">{project.title}</h3>
-            {project.tagline && <p className="project-tagline">{project.tagline}</p>}
+          <div className="project-timeline-badge">
+            {isCompleted ? '📅 Completed • Full-Stack Project' : '📅 Active Exploration • AI Engineering'}
           </div>
-
-          <div
-            className={`status-pill ${
-              isCompleted ? 'status-available' : 'status-progress'
-            } project-status-badge`}
-          >
-            <span className="status-dot" aria-hidden="true" />
-            <span>{project.status}</span>
-          </div>
+          <h3 className="project-title">{project.title}</h3>
+          {project.tagline && <p className="project-tagline">{project.tagline}</p>}
         </div>
 
         <p className="project-description">{project.description}</p>
 
-        {/* Feature Highlights */}
+        {/* Feature Highlights with Star Bullets */}
         {project.features && project.features.length > 0 && (
           <div className="project-features">
             <span className="features-heading">Implemented Scope</span>
             <ul className="features-list">
               {project.features.map((feature, idx) => (
                 <li key={idx} className="feature-item">
-                  <span className="feature-bullet" aria-hidden="true">
-                    —
-                  </span>
+                  <span className="feature-star" aria-hidden="true">✦</span>
                   <span>{feature}</span>
                 </li>
               ))}
@@ -151,21 +160,21 @@ export default function ProjectCard({ project, isFeatured = false }) {
         <div className="project-tech-wrapper" aria-label="Technologies used">
           <div className="tech-tags-list">
             {project.technologies.map((tech) => (
-              <span key={tech} className="tech-tag">
+              <span key={tech} className="tech-pill">
                 {tech}
               </span>
             ))}
           </div>
         </div>
 
-        {/* Links / Action Buttons - Gracefully Hiding Unavailable Links */}
+        {/* Action Buttons */}
         <div className="project-actions">
           {project.githubUrl ? (
             <a
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-secondary btn-sm"
+              className="btn btn-primary btn-sm"
               aria-label={`View source code for ${project.title} on GitHub`}
             >
               <svg
@@ -174,7 +183,7 @@ export default function ProjectCard({ project, isFeatured = false }) {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="2"
+                strokeWidth="2.2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 aria-hidden="true"
@@ -196,7 +205,7 @@ export default function ProjectCard({ project, isFeatured = false }) {
               href={project.demoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-primary btn-sm"
+              className="btn btn-secondary btn-sm"
               aria-label={`Open live demo of ${project.title}`}
             >
               <span>Live Demo</span>
@@ -206,7 +215,7 @@ export default function ProjectCard({ project, isFeatured = false }) {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="2"
+                strokeWidth="2.2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 aria-hidden="true"
@@ -223,7 +232,16 @@ export default function ProjectCard({ project, isFeatured = false }) {
               <span>Read Case Study</span>
             </a>
           )}
+
+          <span className="project-verified-status">
+            ✓ Implementation Verified
+          </span>
         </div>
+      </div>
+
+      {/* Right: Architecture Simulation Stage */}
+      <div className="project-visual-column">
+        {renderVisual()}
       </div>
     </article>
   );

@@ -1,44 +1,88 @@
+import { useState } from 'react';
 import { skillCategories } from '../data/skills';
 
 export default function Skills() {
-  const getCategoryIcon = (id) => {
-    switch (id) {
+  const [activeFilter, setActiveFilter] = useState('all');
+
+  // Flatten skills with category metadata for filtering
+  const allSkills = skillCategories.flatMap((category) =>
+    category.skills.map((skill) => ({
+      ...skill,
+      categoryId: category.id,
+      categoryTitle: category.title
+    }))
+  );
+
+  const filterTabs = [
+    { id: 'all', label: 'All Skills' },
+    { id: 'programming', label: 'Programming' },
+    { id: 'ai-data-science', label: 'AI & Data Science' },
+    { id: 'software-development', label: 'Software Dev' },
+    { id: 'tools', label: 'Tools & CI/CD' }
+  ];
+
+  const filteredSkills =
+    activeFilter === 'all'
+      ? allSkills
+      : allSkills.filter((skill) => skill.categoryId === activeFilter);
+
+  const getSkillIcon = (name) => {
+    switch (name) {
+      case 'Python':
+        return '🐍';
+      case 'SQL':
+        return '📊';
+      case 'C / C++':
+        return '⚡';
+      case 'JavaScript (ES6+)':
+        return '🟡';
+      case 'HTML5 & CSS3':
+        return '🎨';
+      case 'Machine Learning Fundamentals':
+        return '🧠';
+      case 'Data Analysis & Exploration':
+        return '📈';
+      case 'Data Visualization':
+        return '📉';
+      case 'Neural Networks (Foundations)':
+        return '🕸️';
+      case 'Responsible AI & Ethics':
+        return '⚖️';
+      case 'React':
+        return '⚛️';
+      case 'Flask':
+        return '🌶️';
+      case 'SQLite':
+        return '🗄️';
+      case 'RESTful APIs':
+        return '🔌';
+      case 'Responsive UI Architecture':
+        return '📱';
+      case 'Git & GitHub':
+        return '🐙';
+      case 'VS Code':
+        return '💻';
+      case 'Jupyter Notebooks':
+        return '🪐';
+      case 'Postman':
+        return '📮';
+      case 'Command Line / Shell':
+      default:
+        return '🛠️';
+    }
+  };
+
+  const getCategoryBadge = (categoryId) => {
+    switch (categoryId) {
       case 'programming':
-        return (
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-            <polyline points="16 18 22 12 16 6" />
-            <polyline points="8 6 2 12 8 18" />
-          </svg>
-        );
+        return 'LANGUAGE';
       case 'ai-data-science':
-        return (
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-            <path d="M12 2v4" />
-            <path d="M12 18v4" />
-            <path d="m4.93 4.93 2.83 2.83" />
-            <path d="m16.24 16.24 2.83 2.83" />
-            <path d="M2 12h4" />
-            <path d="M18 12h4" />
-            <path d="m4.93 19.07 2.83-2.83" />
-            <path d="m16.24 7.76 2.83-2.83" />
-            <circle cx="12" cy="12" r="3" />
-          </svg>
-        );
+        return 'AI / DATA';
       case 'software-development':
-        return (
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-            <rect width="20" height="14" x="2" y="3" rx="2" />
-            <line x1="8" x2="16" y1="21" y2="21" />
-            <line x1="12" x2="12" y1="17" y2="21" />
-          </svg>
-        );
+        return 'FRAMEWORK';
       case 'tools':
       default:
-        return (
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-          </svg>
-        );
+        return 'TOOLCHAIN';
     }
   };
 
@@ -47,43 +91,52 @@ export default function Skills() {
       <div className="container">
         {/* Section Header */}
         <div className="section-header">
-          <span className="section-eyebrow">Technical Competencies</span>
+          <span className="section-eyebrow">Waypoint • Skills Constellation</span>
           <h2 id="skills-heading" className="section-title">
-            Skills & Working Knowledge
+            Skills & Working Technologies
           </h2>
           <p className="section-subtitle">
-            Curated list of languages, AI/ML concepts, frameworks, and developer workflows I have
-            hands-on experience with and can discuss in detail during technical conversations.
+            A curated stack of programming languages, machine learning concepts, frameworks, and developer toolchains.
           </p>
         </div>
 
-        {/* Skills Grid */}
-        <div className="skills-grid">
-          {skillCategories.map((category) => (
-            <div key={category.id} className="skill-category-card">
-              <div className="category-header">
-                <div className="category-icon-wrapper" aria-hidden="true">
-                  {getCategoryIcon(category.id)}
+        {/* Filter Navigation Tabs */}
+        <div className="skills-filter-nav" role="tablist" aria-label="Skill Categories">
+          {filterTabs.map((tab) => (
+            <button
+              key={tab.id}
+              role="tab"
+              aria-selected={activeFilter === tab.id}
+              className={`filter-tab ${activeFilter === tab.id ? 'active' : ''}`}
+              onClick={() => setActiveFilter(tab.id)}
+            >
+              <span>{tab.label}</span>
+            </button>
+          ))}
+        </div>
+
+        {/* Structured Skills Grid */}
+        <div className="skills-cards-grid">
+          {filteredSkills.map((skill) => (
+            <div
+              key={skill.name}
+              className={`skill-showcase-card ${skill.highlight ? 'skill-highlight' : ''}`}
+            >
+              <div className="skill-card-top">
+                <div className="skill-orb-wrap">
+                  <span className="skill-emoji">{getSkillIcon(skill.name)}</span>
                 </div>
-                <div>
-                  <h3 className="category-title">{category.title}</h3>
-                  <p className="category-subtitle">{category.subtitle}</p>
-                </div>
+                <span className="skill-category-badge">
+                  {getCategoryBadge(skill.categoryId)}
+                </span>
               </div>
 
-              <div className="skills-list">
-                {category.skills.map((skill) => (
-                  <div
-                    key={skill.name}
-                    className={`skill-item ${skill.highlight ? 'skill-item-highlight' : ''}`}
-                  >
-                    <div className="skill-item-main">
-                      <span className="skill-bullet" aria-hidden="true" />
-                      <span className="skill-name">{skill.name}</span>
-                    </div>
-                    {skill.note && <span className="skill-note">{skill.note}</span>}
-                  </div>
-                ))}
+              <div className="skill-name">{skill.name}</div>
+              <div className="skill-note">{skill.note}</div>
+
+              <div className="skill-competency-row">
+                <span className="competency-indicator">Verified Knowledge</span>
+                <span className="competency-glyph">✦</span>
               </div>
             </div>
           ))}

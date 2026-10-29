@@ -2,7 +2,6 @@ import { projectsData } from '../data/projects';
 import ProjectCard from './ProjectCard';
 
 export default function Projects() {
-  // Only display projects marked as visible
   const visibleProjects = projectsData.filter((p) => p.visible !== false);
 
   return (
@@ -10,9 +9,9 @@ export default function Projects() {
       <div className="container">
         {/* Section Header */}
         <div className="section-header">
-          <span className="section-eyebrow">Featured Work</span>
+          <span className="section-eyebrow">Waypoint • Featured Expeditions</span>
           <h2 id="projects-heading" className="section-title">
-            Selected Projects & System Architecture
+            Projects & System Architecture
           </h2>
           <p className="section-subtitle">
             Functional, end-to-end software built with clean architectures. Only implemented
@@ -20,7 +19,7 @@ export default function Projects() {
           </p>
         </div>
 
-        {/* Project Cards Grid */}
+        {/* Project Cards Stack */}
         <div className="projects-grid">
           {visibleProjects.map((project, index) => (
             <ProjectCard

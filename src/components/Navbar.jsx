@@ -4,10 +4,26 @@ import { profileData } from '../data/profile';
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('hero');
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+
+      const sections = ['hero', 'about', 'skills', 'projects', 'education', 'contact'];
+      const scrollPosition = window.scrollY + 140;
+
+      for (const sectionId of sections) {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(sectionId);
+            break;
+          }
+        }
+      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -27,11 +43,12 @@ export default function Navbar() {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { label: 'Work', href: '#projects' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Certifications', href: '#certifications' },
-    { label: 'About', href: '#about' },
-    { label: 'Contact', href: '#contact' }
+    { label: 'Home', href: '#hero', id: 'hero' },
+    { label: 'About', href: '#about', id: 'about' },
+    { label: 'Skills', href: '#skills', id: 'skills' },
+    { label: 'Projects', href: '#projects', id: 'projects' },
+    { label: 'Education', href: '#education', id: 'education' },
+    { label: 'Contact', href: '#contact', id: 'contact' }
   ];
 
   const handleLinkClick = () => {
@@ -41,12 +58,15 @@ export default function Navbar() {
   return (
     <header className={`navbar-header ${scrolled ? 'is-scrolled' : ''}`}>
       <div className="container navbar-container">
-        {/* Brand / Wordmark */}
-        <a href="#" className="navbar-brand" aria-label={`${profileData.name} - Home`}>
-          <span className="navbar-logo-monogram">SD</span>
+        {/* Brand with Astrolabe Glyph */}
+        <a href="#hero" className="navbar-brand" aria-label={`${profileData.name} - Home`}>
+          <div className="brand-astrolabe" aria-hidden="true">
+            <span className="brand-ring"></span>
+            <span className="brand-core"></span>
+          </div>
           <div className="navbar-logo-text">
             <span className="navbar-name">{profileData.name}</span>
-            <span className="navbar-tag">AI/ML & Software</span>
+            <span className="navbar-tag">AI/ML • DATA SCI</span>
           </div>
         </a>
 
@@ -55,8 +75,12 @@ export default function Navbar() {
           <ul className="nav-list">
             {navLinks.map((link) => (
               <li key={link.href} className="nav-item">
-                <a href={link.href} className="nav-link">
-                  {link.label}
+                <a
+                  href={link.href}
+                  className={`nav-link ${activeSection === link.id ? 'active' : ''}`}
+                >
+                  <span className="nav-link-dot" aria-hidden="true"></span>
+                  <span>{link.label}</span>
                 </a>
               </li>
             ))}
@@ -74,12 +98,12 @@ export default function Navbar() {
           >
             <svg
               className="btn-icon"
-              width="16"
-              height="16"
+              width="15"
+              height="15"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              strokeWidth="2"
+              strokeWidth="2.2"
               strokeLinecap="round"
               strokeLinejoin="round"
               aria-hidden="true"
@@ -90,7 +114,7 @@ export default function Navbar() {
             <span>GitHub</span>
           </a>
           <a href="#contact" className="btn btn-primary btn-sm">
-            Connect
+            <span>Connect</span>
           </a>
         </div>
 
@@ -119,8 +143,13 @@ export default function Navbar() {
           <ul className="mobile-nav-list">
             {navLinks.map((link) => (
               <li key={link.href} className="mobile-nav-item">
-                <a href={link.href} className="mobile-nav-link" onClick={handleLinkClick}>
-                  {link.label}
+                <a
+                  href={link.href}
+                  className={`mobile-nav-link ${activeSection === link.id ? 'active' : ''}`}
+                  onClick={handleLinkClick}
+                >
+                  <span className="nav-link-dot" aria-hidden="true"></span>
+                  <span>{link.label}</span>
                 </a>
               </li>
             ))}

@@ -22,6 +22,7 @@ export const profileData = {
     specialization: "Specialization in Data Science",
     institution: "[University / Institute Name — Edit in src/data/profile.js]", // Editable placeholder
     year: "Third Year (Expected 2027)", // Editable placeholder
+    gpa: "8.54 / 10",
     location: "Kolkata, India",
     focusAreas: [
       "Machine Learning & Data Science",

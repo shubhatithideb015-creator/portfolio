@@ -19,9 +19,9 @@ export default function Contact() {
       <div className="container">
         {/* Section Header */}
         <div className="section-header">
-          <span className="section-eyebrow">Initiate Contact</span>
+          <span className="section-eyebrow">Waypoint • Transmission Station</span>
           <h2 id="contact-heading" className="section-title">
-            Let's Build Something Together
+            Contact & Collaboration
           </h2>
           <p className="section-subtitle">
             Open to AI/ML, Data Science, and Software Development internship opportunities.
@@ -31,7 +31,7 @@ export default function Contact() {
 
         <div className="contact-card">
           <div className="contact-primary-column">
-            <span className="contact-kicker">Direct Communication</span>
+            <span className="contact-kicker">Direct Transmission</span>
             <h3 className="contact-headline">
               Ready to discuss projects, research, or internship opportunities?
             </h3>
@@ -54,7 +54,7 @@ export default function Contact() {
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    strokeWidth="2"
+                    strokeWidth="2.2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     aria-hidden="true"
@@ -77,7 +77,7 @@ export default function Contact() {
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    strokeWidth="2"
+                    strokeWidth="2.2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     aria-hidden="true"
@@ -89,11 +89,17 @@ export default function Contact() {
                 </button>
               </div>
             )}
+
+            {/* Availability Beacon Banner */}
+            <div className="contact-beacon-banner">
+              <span className="beacon-ping"></span>
+              <span>Actively interviewing for 2026 AI/ML, Data Science & Software roles</span>
+            </div>
           </div>
 
           {/* Social Channels List */}
           <div className="contact-links-column">
-            <span className="contact-column-label">Profiles & Resources</span>
+            <span className="contact-column-label">Verified Transmission Channels</span>
 
             <div className="contact-links-list">
               {/* GitHub */}
@@ -111,7 +117,7 @@ export default function Contact() {
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
-                      strokeWidth="2"
+                      strokeWidth="2.2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     >
@@ -123,7 +129,7 @@ export default function Contact() {
                     <span className="channel-name">{socialLinks.github.label}</span>
                     <span className="channel-handle">@{socialLinks.github.username}</span>
                   </div>
-                  <span className="channel-arrow">&rarr;</span>
+                  <span className="channel-arrow" aria-hidden="true">&rarr;</span>
                 </a>
               )}
 
@@ -142,7 +148,7 @@ export default function Contact() {
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
-                      strokeWidth="2"
+                      strokeWidth="2.2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     >
@@ -153,9 +159,9 @@ export default function Contact() {
                   </div>
                   <div className="channel-info">
                     <span className="channel-name">{socialLinks.linkedin.label}</span>
-                    <span className="channel-handle">Profile & Endorsements</span>
+                    <span className="channel-handle">Professional Network Profile</span>
                   </div>
-                  <span className="channel-arrow">&rarr;</span>
+                  <span className="channel-arrow" aria-hidden="true">&rarr;</span>
                 </a>
               )}
 
@@ -174,7 +180,7 @@ export default function Contact() {
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
-                      strokeWidth="2"
+                      strokeWidth="2.2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     >
@@ -187,9 +193,9 @@ export default function Contact() {
                   </div>
                   <div className="channel-info">
                     <span className="channel-name">{socialLinks.resume.label}</span>
-                    <span className="channel-handle">PDF Document</span>
+                    <span className="channel-handle">Curriculum Vitae (PDF)</span>
                   </div>
-                  <span className="channel-arrow">&rarr;</span>
+                  <span className="channel-arrow" aria-hidden="true">&rarr;</span>
                 </a>
               )}
             </div>

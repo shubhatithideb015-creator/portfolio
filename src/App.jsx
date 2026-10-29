@@ -1,9 +1,9 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import Projects from './components/Projects';
-import Skills from './components/Skills';
-import Certifications from './components/Certifications';
 import About from './components/About';
+import Skills from './components/Skills';
+import Projects from './components/Projects';
+import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
@@ -15,16 +15,16 @@ export default function App() {
         Skip to main content
       </a>
 
-      {/* Fixed/Sticky Navigation */}
+      {/* Sticky Navigation */}
       <Navbar />
 
       {/* Main Page Content */}
       <main id="main-content">
         <Hero />
-        <Projects />
-        <Skills />
-        <Certifications />
         <About />
+        <Skills />
+        <Projects />
+        <Certifications />
         <Contact />
       </main>
 
